@@ -1,8 +1,9 @@
 // import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import Context from './API/Context';
 import InshortTab from './components/InshortTab';
 
-export default function App() {
+function App() {
   return (
     <View style={{...styles.container , backgroundColor:'#282C35'}}>
       <InshortTab />
@@ -16,3 +17,9 @@ const styles = StyleSheet.create({
    marginTop : StatusBar.currentHeight,
   },
 });
+
+export default ()=>{
+  <Context>
+    <App />
+  </Context>
+}
