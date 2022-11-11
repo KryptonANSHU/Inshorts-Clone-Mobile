@@ -24,7 +24,7 @@ const windowHeight= Dimensions.get('window').height
       <Carousel
         firstItem={articles.slice(0, 10).length - 1}
         layout={"stack"}
-        data={articles.slice(0, 10)}
+        data={articles.slice(0, 20)}
         sliderHeight={10}
         itemHeight={windowHeight}
         vertical={true}

@@ -7,32 +7,28 @@ import NewsScreen from '../screens/NewsScreen';
 import TabNavigation from './TabNavigation';
 import { useContext } from 'react';
 import { NewsContext } from '../API/Context';
+export default function InshortTabs() {
+  const layout = useWindowDimensions();
 
-export default function InshortTab() {
-    const layout = useWindowDimensions();
+  const { index, setIndex } = useContext(NewsContext);
 
-    const{index,setIndex} = useContext(NewsContext);
+  const [routes] = useState([
+    { key: "first", title: "Discover" },
+    { key: "second", title: "News" },
+  ]);
 
-    const [routes] = useState([
-        {key:'first',title:'Discover'},
-        {key:'second',title:'News'},
-    ])
-
-    const renderScene = SceneMap({
-        first: DiscoverScreen,
-        second: NewsScreen
-    })
+  const renderScene = SceneMap({
+    first: DiscoverScreen,
+    second: NewsScreen,
+  });
 
   return (
-   <TabView
+    <TabView
       navigationState={{ index, routes }}
       renderScene={renderScene}
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}
-      renderTabBar={()=> <TabNavigation 
-        index = {index} 
-        setIndex = {setIndex}
-      />}
+      renderTabBar={() => <TabNavigation index={index} setIndex={setIndex} />}
     />
-  )
+  );
 }

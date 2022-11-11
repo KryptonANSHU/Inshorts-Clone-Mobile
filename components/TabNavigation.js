@@ -1,53 +1,60 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import React from 'react'
-import { AntDesign, MaterialCommunityIcons, SimpleLineIcons } from '@expo/vector-icons'
-import { useContext } from 'react'
-import { NewsContext } from '../API/Context'
+import React, { useContext } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { SimpleLineIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import { NewsContext } from "../API/Context";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function TabNavigation({ index, setIndex }) {
+const TopNavigation = ({ index, setIndex }) => {
+  const { darkTheme, setDarkTheme, fetchNews } = useContext(NewsContext);
 
-  const {} = useContext(NewsContext)
   return (
-// ---------------------------------Left Section---------------------------
-    <View style={{ ...styles.container, backgroundColor: "#282c35" }}>
-      {
-        index === 0 ?
-          (<>
-            <TouchableOpacity style={styles.left}>
-              <Text style={{ ...styles.text, color: 'lightgrey' }}>
-                <MaterialCommunityIcons
-                  name='theme-light-dark'
-                  size={24}
-                  color="#007FFF"
-                />
-              </Text>
-            </TouchableOpacity>
-          </>) : (
-            <>
-              <TouchableOpacity
-                style={styles.left}
-                onPress={() => setIndex(index === 0 ? 1 : 0)}>
-                <SimpleLineIcons name='arrow-left' size={15} color="#007FFF" />
-                <Text style={{ ...styles.text, color: 'lightgrey' }}>Discover</Text>
-              </TouchableOpacity>
-            </>)
-      }
+    <View
+      style={{
+        ...styles.container,
+        backgroundColor: darkTheme ? "#282C35" : "white",
+      }}
+    >
+      {index === 0 ? (
+        <TouchableOpacity
+          onPress={() => setDarkTheme(!darkTheme)}
+          style={styles.left}
+        >
+          <Text
+            style={{ ...styles.text, color: darkTheme ? "lightgrey" : "black" }}
+          >
+            <MaterialCommunityIcons
+              name="theme-light-dark"
+              size={24}
+              color="#F58C76"
+            />
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          style={styles.left}
+          onPress={() => setIndex(index === 0 ? 1 : 0)}
+        >
+          <SimpleLineIcons name="arrow-left" size={15} color="#F58C76" />
+          <Text
+            style={{ ...styles.text, color: darkTheme ? "lightgrey" : "black" }}
+          >
+            Discover
+          </Text>
+        </TouchableOpacity>
+      )}
 
-{/* ---------------------------Center Section--------------------------------  */}
-
-      <Text style={{ ...styles.center, color: 'white' }}>
-        {index ? 'All News' : 'Discover'}
+      <Text style={{ ...styles.center, color: darkTheme ? "white" : "black" }}>
+        {index ? "All News" : "Discover"}
       </Text>
-
-{/* --------------------------------Centre End--------------------------------- */}
-
       {index ? (
         <TouchableOpacity
           style={styles.right}
-        // onPress={() => fetchNews("general")}
+          onPress={() => fetchNews("general")}
         >
           <Text style={styles.text}>
-            <AntDesign name="reload1" size={24} color="#007FFF" />
+            <AntDesign name="reload1" size={24} color="#F58C76" />
           </Text>
         </TouchableOpacity>
       ) : (
@@ -56,18 +63,18 @@ export default function TabNavigation({ index, setIndex }) {
           onPress={() => setIndex(index === 0 ? 1 : 0)}
         >
           <Text
-          style={{ ...styles.text, color: 'lightgrey' }}
+            style={{ ...styles.text, color: darkTheme ? "white" : "black" }}
           >
             All News
           </Text>
-          <SimpleLineIcons name="arrow-right" size={15} color="#007FFF" />
+          <SimpleLineIcons name="arrow-right" size={15} color="#F58C76" />
         </TouchableOpacity>
       )}
-
     </View>
-  )
-}
+  );
+};
 
+export default TopNavigation;
 
 const styles = StyleSheet.create({
   container: {
@@ -80,7 +87,7 @@ const styles = StyleSheet.create({
   },
   center: {
     paddingBottom: 6,
-    borderBottomColor: "#007FFF",
+    borderBottomColor: "#F58C76",
     borderBottomWidth: 5,
     borderRadius: 10,
     fontSize: 16,

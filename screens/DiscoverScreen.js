@@ -11,20 +11,22 @@ import {
 import Carousel from "react-native-snap-carousel";
 import { categories, sources } from "../API/api";
 import { NewsContext } from "../API/Context";
+import Search from "../components/Search";
 
-export default function DiscoverScreen() {
-
-  const { setCategory } = useContext(NewsContext)
-
+const DiscoverScreen = () => {
   const windowWidth = Dimensions.get("window").width;
   const SLIDE_WIDTH = Math.round(windowWidth / 3.5);
 
+  const { setCategory, setSource, darkTheme } = useContext(NewsContext);
+
   return (
     <View style={styles.discover}>
-      {/* search */}
-
-      {/* categories  */}
-      <Text style={{ ...styles.subtitle, color: 'white' }}>Categories</Text>
+      <Search />
+      <Text
+        style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
+      >
+        Categories
+      </Text>
       <Carousel
         layout={"default"}
         data={categories}
@@ -36,7 +38,7 @@ export default function DiscoverScreen() {
             >
               <Image source={{ uri: item.pic }} style={styles.categoryImage} />
               <Text
-                style={{ ...styles.name, color: "white" }}
+                style={{ ...styles.name, color: "#F58C76" }}
               >
                 {item.name}
               </Text>
@@ -49,9 +51,8 @@ export default function DiscoverScreen() {
         inactiveSlideScale={1}
         inactiveSlideOpacity={1}
       />
-
       <Text
-        style={{ ...styles.subtitle, color: "white" }}
+        style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
       >
         Sources
       </Text>
@@ -67,9 +68,10 @@ export default function DiscoverScreen() {
         ))}
       </View>
     </View>
-  )
-}
+  );
+};
 
+export default DiscoverScreen;
 
 const styles = StyleSheet.create({
   discover: {
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingBottom: 8,
     marginHorizontal: 5,
-    borderBottomColor: "#007FFF",
+    borderBottomColor: "#F58C76",
     borderBottomWidth: 5,
     alignSelf: "flex-start",
     borderRadius: 10,
@@ -93,13 +95,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   categoryImage: {
-    height: "60%",
-    width: "100%",
+    height: "40%",
+    width: "80%",
     resizeMode: "contain",
   },
   name: {
     fontSize: 14,
     textTransform: "capitalize",
+    fontWeight:"500"
   },
   sources: {
     flexDirection: "row",
@@ -108,8 +111,8 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   sourceContainer: {
-    height: 150,
-    width: "40%",
+    height: 130,
+    width: "35%",
     borderRadius: 10,
     margin: 15,
     backgroundColor: "#cc313d",
