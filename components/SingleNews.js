@@ -32,7 +32,7 @@ const SingleNews = ({ item, index }) => {
           backgroundColor:"#1E1D1C",
         }}
       >
-        <Text style={{ ...styles.title, color: "white" }}>
+        <Text style={{ ...styles.title, color: "#E49989" }}>
           {item.title}
         </Text>
         <Text
