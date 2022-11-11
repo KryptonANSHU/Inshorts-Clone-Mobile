@@ -1,8 +1,12 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import { AntDesign, MaterialCommunityIcons, SimpleLineIcons } from '@expo/vector-icons'
+import { useContext } from 'react'
+import { NewsContext } from '../API/Context'
 
 export default function TabNavigation({ index, setIndex }) {
+
+  const {} = useContext(NewsContext)
   return (
 // ---------------------------------Left Section---------------------------
     <View style={{ ...styles.container, backgroundColor: "#282c35" }}>
