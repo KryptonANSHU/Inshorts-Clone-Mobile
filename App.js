@@ -4,7 +4,7 @@ import InshortTab from './components/InshortTab';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View style={{...styles.container , backgroundColor:'#282C35'}}>
       <InshortTab />
     </View>
   );
