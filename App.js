@@ -19,7 +19,9 @@ const styles = StyleSheet.create({
 });
 
 export default ()=>{
-  <Context>
+  return(
+    <Context>
     <App />
   </Context>
+)
 }

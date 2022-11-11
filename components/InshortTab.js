@@ -5,10 +5,13 @@ import { SceneMap, TabView } from 'react-native-tab-view';
 import DiscoverScreen from '../screens/DiscoverScreen';
 import NewsScreen from '../screens/NewsScreen';
 import TabNavigation from './TabNavigation';
+import { useContext } from 'react';
+import { NewsContext } from '../API/Context';
 
 export default function InshortTab() {
     const layout = useWindowDimensions();
-    const [index,setIndex] = useState(1)
+
+    const{index,setIndex} = useContext(NewsContext);
 
     const [routes] = useState([
         {key:'first',title:'Discover'},
